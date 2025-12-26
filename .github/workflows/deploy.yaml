@@ -8,7 +8,7 @@ on:
 
 env:
   DOCKER_IMAGE: jeremy9k/fastapi-cicd-demo
-  DOCKER_TAG: v1.0.0
+  DOCKER_TAG: v2.0.0
 
 jobs:
   test:

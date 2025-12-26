@@ -15,7 +15,7 @@ def health_check():
 
 @app.get("/api/info")
 def get_info():
-    return {"app": "FastAPI CI/CD Demo", "version": "1.0.0"}
+    return {"app": "FastAPI CI/CD Demo", "version": "2.0.0"}
 
 
 @app.get("/api/data")
