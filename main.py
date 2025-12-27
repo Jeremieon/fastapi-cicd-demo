@@ -1,21 +1,41 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from config import settings
 
-app = FastAPI()
+import time
+
+app = FastAPI(title=settings.app_name, version=settings.version)
+deployment_time = time.time()
 
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello from CI/CD!", "status": "running"}
+    return {
+        "message": f"Hello from CI/CD v{settings.version}!",
+        "environment": settings.environment,
+        "status": "running",
+    }
 
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy"}
+    """Health check endpoint for deployment verification"""
+    return {
+        "status": "healthy",
+        "environment": settings.environment,
+        "version": settings.version,
+        "uptime": int(time.time() - deployment_time),
+    }
 
 
 @app.get("/api/info")
 def get_info():
-    return {"app": "FastAPI CI/CD Demo", "version": "2.0.0"}
+    return settings.get_info()
+
+
+@app.get("/api/test-error")
+def test_error():
+    """Endpoint to test rollback - uncomment to simulate failure"""
+    return {"message": "No error - endpoint working fine"}
 
 
 @app.get("/api/data")
