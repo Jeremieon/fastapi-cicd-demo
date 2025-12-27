@@ -18,7 +18,7 @@ def read_root():
 
 @app.get("/health")
 def health_check():
-    """Health check endpoint for deployment verification"""
+    """Health check endpoint for deployment verification Banger"""
     return {
         "status": "healthy",
         "environment": settings.environment,
