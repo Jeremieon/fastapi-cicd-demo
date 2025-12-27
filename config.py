@@ -10,12 +10,12 @@ class Settings:
         self.debug: bool = self.environment == 'development'
         #self.database_url: str = os.getenv('DATABASE_URL', 'sqlite:///./test.db')
 
-        def get_info(self):
-            return {
-                "app": self.app_name,
-                "version": self.version,
-                "environment": self.environment,
-                "debug": self.debug,
-            }
+    def get_info(self):
+        return {
+            "app": self.app_name,
+            "version": self.version,
+            "environment": self.environment,
+            "debug": self.debug,
+        }
         
 settings = Settings()
